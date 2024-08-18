@@ -9,6 +9,8 @@ import { Input } from "@/components/ui/input"
 import CustomFormField from "./CustomFormField"
 import SubmitButton from "@/components/SubmitButton"
 import { useState } from "react"
+import { UserFormValidation } from "@/lib/validation"
+import { useRouter } from "next/router"
 
 export enum FormFieldType {
   INPUT = "input",
@@ -21,26 +23,51 @@ export enum FormFieldType {
 
 }
  
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-})
+// const formSchema = z.object({
+//   username: z.string().min(2, {
+//     message: "Username must be at least 2 characters.",
+//   }),
+// })
  
 const PatientForm = () => {
 
-  // const router = useRouter();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof UserFormValidation>>({
+    resolver: zodResolver(UserFormValidation),
     defaultValues: {
-      username: "",
+      name: "",
+      email: "",
+      phone: "",
     },
   })
+
+
+  const onSubmit = async (values: z.infer<typeof UserFormValidation>) => {
+    setIsLoading(true);
+
+    try {
+      const user = {
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+      };
+
+      const newUser = await createUser(user);
+
+      if (newUser) {
+        router.push(`/patients/${newUser.$id}/register`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    setIsLoading(false);
+  };
  
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof UserFormValidation>) {
     console.log(values)
   }
   return (
