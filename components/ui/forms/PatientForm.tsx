@@ -6,22 +6,15 @@ import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import {Form } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import CustomFormField from "./CustomFormField"
+// import CustomFormField from "./CustomFormField"
 import SubmitButton from "@/components/SubmitButton"
 import { useState } from "react"
 import { UserFormValidation } from "@/lib/validation"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
+import { createUser } from "@/lib/actions/patient.actions"
+import CustomFormField, { FormFieldType } from "./CustomFormField";
 
-export enum FormFieldType {
-  INPUT = "input",
-  TEXTAREA = "textarea",
-  PHONE_INPUT = "phoneInput",
-  CHECKBOX = "checkbox",
-  DATE_PICKER = "datePicker",
-  SELECT = "select",
-  SKELETON = "skeleton",
 
-}
  
 // const formSchema = z.object({
 //   username: z.string().min(2, {
@@ -67,9 +60,9 @@ const PatientForm = () => {
   };
  
 
-  function onSubmit(values: z.infer<typeof UserFormValidation>) {
-    console.log(values)
-  }
+  // function onSubmit(values: z.infer<typeof UserFormValidation>) {
+  //   console.log(values)
+  // }
   return (
     <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex-1">
