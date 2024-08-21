@@ -11,11 +11,12 @@ import { Form, FormControl } from "@/components/ui/form";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { SelectItem } from "@/components/ui/select";
-import { 
-  GenderOptions, 
+import {
   Doctors,
+  GenderOptions,
   IdentificationTypes,
-  PatientFormDefaultValues, } from "@/constants";
+  PatientFormDefaultValues,
+} from "@/constants";
 import { registerPatient } from "@/lib/actions/patient.actions";
 import { PatientFormValidation } from "@/lib/validation";
 
@@ -33,9 +34,9 @@ const RegisterForm = ({ user }: { user: User }) => {
     resolver: zodResolver(PatientFormValidation),
     defaultValues: {
       ...PatientFormDefaultValues,
-      name: user.name,
-      email: user.email,
-      phone: user.phone,
+      name: "",
+      email: "",
+      phone: "",
     },
   });
 
@@ -140,7 +141,7 @@ const RegisterForm = ({ user }: { user: User }) => {
               control={form.control}
               name="phone"
               label="Phone Number"
-              placeholder="+234-123-456-789"
+              placeholder="(555) 123-4567"
             />
           </div>
 
@@ -168,7 +169,7 @@ const RegisterForm = ({ user }: { user: User }) => {
                     {GenderOptions.map((option, i) => (
                       <div key={option + i} className="radio-group">
                         <RadioGroupItem value={option} id={option} />
-                        <Label htmlFor={option} className="cursor-pointer"> 
+                        <Label htmlFor={option} className="cursor-pointer">
                           {option}
                         </Label>
                       </div>
@@ -186,7 +187,7 @@ const RegisterForm = ({ user }: { user: User }) => {
               control={form.control}
               name="address"
               label="Address"
-              placeholder="25 Aheik Lawal Abubakar Road, KADUNA STATE, NG - 86006"
+              placeholder="14 street, New york, NY - 5101"
             />
 
             <CustomFormField
@@ -213,7 +214,7 @@ const RegisterForm = ({ user }: { user: User }) => {
               control={form.control}
               name="emergencyContactNumber"
               label="Emergency contact number"
-              placeholder="+234-123-456-789"
+              placeholder="(555) 123-4567"
             />
           </div>
         </section>
@@ -254,7 +255,7 @@ const RegisterForm = ({ user }: { user: User }) => {
               control={form.control}
               name="insuranceProvider"
               label="Insurance provider"
-              placeholder="BlueShield Heroes"
+              placeholder="BlueCross BlueShield"
             />
 
             <CustomFormField
@@ -262,7 +263,7 @@ const RegisterForm = ({ user }: { user: User }) => {
               control={form.control}
               name="insurancePolicyNumber"
               label="Insurance policy number"
-              placeholder="EFC123456789"
+              placeholder="ABC123456789"
             />
           </div>
 
@@ -329,7 +330,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="identificationNumber"
             label="Identification Number"
-            placeholder="1098890098"
+            placeholder="123456789"
           />
 
           <CustomFormField

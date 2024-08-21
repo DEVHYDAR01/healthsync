@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { redirect } from "next/navigation";
-// import Link from "next/link";
 
 import RegisterForm from "@/components/ui/forms/RegisterForm";
 import { getPatient, getUser } from "@/lib/actions/patient.actions";
@@ -9,7 +8,7 @@ const Register = async ({ params: { userId } }: SearchParamProps) => {
   const user = await getUser(userId);
   const patient = await getPatient(userId);
 
-  if (patient) redirect(`/patients/${userId}/new-appointment`);
+  if (patient) redirect(`/patients/${user.Id}/new-appointment`);
 
   return (
     <div className="flex h-screen max-h-screen">
@@ -19,7 +18,7 @@ const Register = async ({ params: { userId } }: SearchParamProps) => {
             src="/assets/icons/logo-full.svg"
             height={1000}
             width={1000}
-            alt="healthsync"
+            alt="patient"
             className="mb-12 h-10 w-fit"
           />
 

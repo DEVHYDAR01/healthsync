@@ -1,6 +1,7 @@
 "use server";
 
-import { ID, InputFile, Query } from "node-appwrite";
+import { ID, Query } from "node-appwrite"; 
+import { InputFile } from "node-appwrite/file"
 
 import {
   BUCKET_ID,
@@ -18,7 +19,12 @@ import { parseStringify } from "../utils";
 export const createUser = async (user: CreateUserParams) => {
   try {
     // Create new user -> https://appwrite.io/docs/references/1.5.x/server-nodejs/users#create
-    const newuser = await users.create(ID.unique(), user.email, user.phone, undefined, user.name);
+    const newuser = await users.create(
+      ID.unique(), 
+      user.email, 
+      user.phone,
+      undefined, 
+      user.name);
 
     return parseStringify(newuser);
   } catch (error: any) {
@@ -33,6 +39,7 @@ export const createUser = async (user: CreateUserParams) => {
     console.error("An error occurred while creating a new user:", error);
   }
 };
+
 
 // GET USER
 export const getUser = async (userId: string) => {
@@ -59,7 +66,7 @@ export const registerPatient = async ({
     if (identificationDocument) {
       const inputFile =
         identificationDocument &&
-        InputFile.fromBlob(
+        InputFile.fromBuffer(
           identificationDocument?.get("blobFile") as Blob,
           identificationDocument?.get("fileName") as string
         );

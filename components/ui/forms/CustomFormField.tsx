@@ -1,8 +1,7 @@
 "use client"
 
-import { Select, SelectContent, SelectTrigger, SelectValue  } from "@radix-ui/react-select"
+import { Select, SelectContent, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
-    Form,
     FormControl,
     FormDescription,
     FormField,
@@ -18,7 +17,8 @@ import PhoneInput from 'react-phone-number-input'
 import { E164Number } from "libphonenumber-js/core";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Textarea } from "../textarea"
+import { Textarea } from "@/components/ui/textarea"
+import { Checkbox } from "@/components/ui/checkbox"
 
 
 export enum FormFieldType {
