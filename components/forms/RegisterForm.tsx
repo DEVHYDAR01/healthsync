@@ -22,9 +22,9 @@ import { PatientFormValidation } from "@/lib/validation";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "react-phone-number-input/style.css";
-import CustomFormField, { FormFieldType } from "./CustomFormField";
-import { FileUploader } from "@/components/FileUploader";
-import SubmitButton from "@/components/SubmitButton";
+import CustomFormField, { FormFieldType } from "../CustomFormField";
+import { FileUploader } from "../FileUploader";
+import SubmitButton from "../SubmitButton";
 
 const RegisterForm = ({ user }: { user: User }) => {
   const router = useRouter();
@@ -34,9 +34,9 @@ const RegisterForm = ({ user }: { user: User }) => {
     resolver: zodResolver(PatientFormValidation),
     defaultValues: {
       ...PatientFormDefaultValues,
-      name: "",
-      email: "",
-      phone: "",
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
     },
   });
 
@@ -131,7 +131,7 @@ const RegisterForm = ({ user }: { user: User }) => {
               control={form.control}
               name="email"
               label="Email address"
-              placeholder="johndoe@gmail.com"
+              placeholder="devhydar@gmail.com"
               iconSrc="/assets/icons/email.svg"
               iconAlt="email"
             />
@@ -141,7 +141,7 @@ const RegisterForm = ({ user }: { user: User }) => {
               control={form.control}
               name="phone"
               label="Phone Number"
-              placeholder="(555) 123-4567"
+              placeholder="+234-123-456-789"
             />
           </div>
 
@@ -187,7 +187,7 @@ const RegisterForm = ({ user }: { user: User }) => {
               control={form.control}
               name="address"
               label="Address"
-              placeholder="14 street, New york, NY - 5101"
+              placeholder="25 Sheik Lawal Abubakar road, Kaduuna State, NG - 5101"
             />
 
             <CustomFormField
@@ -214,7 +214,7 @@ const RegisterForm = ({ user }: { user: User }) => {
               control={form.control}
               name="emergencyContactNumber"
               label="Emergency contact number"
-              placeholder="(555) 123-4567"
+              placeholder="+234-123-456-789"
             />
           </div>
         </section>
@@ -255,7 +255,7 @@ const RegisterForm = ({ user }: { user: User }) => {
               control={form.control}
               name="insuranceProvider"
               label="Insurance provider"
-              placeholder="BlueCross BlueShield"
+              placeholder="BlueShield heros"
             />
 
             <CustomFormField
@@ -274,7 +274,7 @@ const RegisterForm = ({ user }: { user: User }) => {
               control={form.control}
               name="allergies"
               label="Allergies (if any)"
-              placeholder="Peanuts, Penicillin, Pollen"
+              placeholder="Penicillin, Pollen, Peanuts"
             />
 
             <CustomFormField
@@ -282,7 +282,7 @@ const RegisterForm = ({ user }: { user: User }) => {
               control={form.control}
               name="currentMedication"
               label="Current medications"
-              placeholder="Ibuprofen 200mg, Levothyroxine 50mcg"
+              placeholder="Levothyroxine 50mcg, Ibuprofen 200mg"
             />
           </div>
 
@@ -301,7 +301,7 @@ const RegisterForm = ({ user }: { user: User }) => {
               control={form.control}
               name="pastMedicalHistory"
               label="Past medical history"
-              placeholder="Appendectomy in 2015, Asthma diagnosis in childhood"
+              placeholder="Asthma diagnosis in childhood, Appendectomy in 2015"
             />
           </div>
         </section>
